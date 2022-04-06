@@ -11,13 +11,13 @@
 
 ## Computación 2021
 
-**Asignatura**: <!-- REEMPLAZA este comentario por el nombre de la asignatura -->
+**Asignatura**: <!-- PSR -->
 
-**Nombre TP**: <!-- REEMPLAZA este comentario por el nombre del TP -->
+**Nombre TP**: <!-- TP Bolillero-->
 
-**Apellido y nombre Alumno**: <!-- REEMPLAZA este comentario por tu apellido y nombre -->
+**Apellido y nombre Alumno**: <!-- Mayta Cristhian -->
 
-**Curso**: <!-- REEMPLAZA este comentario por tu curso -->
+**Curso**: <!-- 6ma 7ma -->
 
 # Título del Proyecto
 
