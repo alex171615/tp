@@ -7,18 +7,28 @@ namespace tpBolillero.Core
     {
         private List<byte> Adentro {get;set;}
         private List<byte> Afuera {get;set;}
-        private IAzar azar;
+        public IAzar azar{get;set;}
+
         public Bolillero()
         {
-            
-
+            Adentro=new List<byte>();
+            Afuera=new List<byte>();
         }
         public Bolillero(byte n)
         {
-
+            CrearBolillero(n);
         }
-        private CrearBolillas(byte n)
+        
+        public void CrearBolillero(byte n)
         {
+            Adentro=new List<byte>();
+            Afuera=new List<byte>();
+            
+            for  (byte i = 0; i < n; i++)
+            {
+            Adentro.Add(i);
+            }
+            
 
         }
         public Reingresar()
@@ -29,8 +39,6 @@ namespace tpBolillero.Core
         public SacarBolilla(byte n);
 
     }
-  
-   
 
     
 }

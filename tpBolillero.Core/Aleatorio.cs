@@ -7,7 +7,12 @@ namespace tpBolillero.Core
     public class Aleatorio : IAzar
     {
         private Random r = new Random();
-        public SacarBolilla(List<byte>b);
-        
+
+        public byte SacarBolilla(List<byte> b)
+        {
+            int aleatorionumero=b.Count();
+            int indice=r.Next(0,aleatorionumero);
+            return b[indice];
+        }
     }
 }
