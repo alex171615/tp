@@ -8,11 +8,11 @@ namespace tpBolillero.Core
     {
         private Random r = new Random();
 
-        public byte SacarBolilla(List<byte> b)
+        public byte SacarBolilla(List<byte> numerob)
         {
-            int aleatorionumero=b.Count();
+            int aleatorionumero=numerob.Count();
             int indice=r.Next(0,aleatorionumero);
-            return b[indice];
+            return numerob[indice];
         }
     }
 }
