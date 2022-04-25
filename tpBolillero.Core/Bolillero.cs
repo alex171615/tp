@@ -15,6 +15,7 @@ namespace tpBolillero.Core
             Afuera = new List<byte>();
             Azar = azar;
         }
+
         public Bolillero(IAzar azar, byte numerob) 
             => CrearBolillas(numerob);
         
@@ -35,9 +36,9 @@ namespace tpBolillero.Core
         {
             Afuera.AddRange(Adentro);
             Afuera.Clear();
-
         }
         
+
         public byte SacarBolilla()
         {
             var bol = Azar.SacarBolilla(Adentro);
@@ -46,22 +47,22 @@ namespace tpBolillero.Core
             return(bol);
         }
 
+
         public bool Jugar(List <byte> bol) 
         => bol.TrueForAll(x => x == SacarBolilla());
 
-        public async long jugarn(List<byte> juegos,long j)
+
+        public long JugarN(List<byte> juegos,long j)
         {
-            int hhb;
-            for(int i=0; i < j; i++)
+            long contador=0;
+
+            for(long i=0; i < j; i++)
             {
-                
-
+                if (Jugar(juegos))
+                contador ++;
             }
+            return contador;
         }
-        {
-            
-        }
-
     }
 
     
