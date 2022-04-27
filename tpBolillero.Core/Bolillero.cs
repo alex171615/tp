@@ -5,18 +5,13 @@ namespace tpBolillero.Core
 {
     public class Bolillero
     {
-        private List<byte> Adentro {get;set;}
-        private List<byte> Afuera {get;set;}
+        public List<byte> Adentro {get;set;}
+        public List<byte> Afuera {get;set;}
         public IAzar Azar{get;set;}
 
-       public Bolillero(IAzar azar)
-        {
-            Adentro = new List<byte>();
-            Afuera = new List<byte>();
-            Azar = azar;
-        }
+       public Bolillero(){}
 
-        public Bolillero(IAzar azar, byte numerob) 
+        public Bolillero(byte numerob) 
             => CrearBolillas(numerob);
         
 
@@ -25,41 +20,44 @@ namespace tpBolillero.Core
             Adentro=new List<byte>();
             Afuera=new List<byte>();
             
-            for  (byte i = 0; i < numerob; i++)
+            for  (byte bol = 0; bol < numerob; bol++)
             {
-            Adentro.Add(numerob);
+            Adentro.Add(bol);
             }
             
 
         }
-        public void Reingresar()
+        public void ReIngresar()
         {
-            Afuera.AddRange(Adentro);
+            Adentro.AddRange(Afuera);
             Afuera.Clear();
         }
         
 
         public byte SacarBolilla()
         {
-            var bol = Azar.SacarBolilla(Adentro);
-            Adentro.Add(bol);
-            Adentro.Remove(bol);
-            return(bol);
+            byte bolilla = Azar.SacarBolilla(Adentro);
+            Adentro.Remove(bolilla);
+            Afuera.Add(bolilla);
+            return bolilla;
         }
 
 
-        public bool Jugar(List <byte> bol) 
-        => bol.TrueForAll(x => x == SacarBolilla());
+        public bool Jugar(List <byte> juegos) 
+        => juegos.TrueForAll(x => x == SacarBolilla());
 
 
-        public long JugarN(List<byte> juegos,long j)
+        public long JugarN(List<byte> bolilla,long j)
         {
             long contador=0;
 
-            for(long i=0; i < j; i++)
-            {
-                if (Jugar(juegos))
-                contador ++;
+           {
+                ReIngresar();
+
+                if (Jugar(bolilla))
+                {
+                    contador++;
+                }
             }
             return contador;
         }
