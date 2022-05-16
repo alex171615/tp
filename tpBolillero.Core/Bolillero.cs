@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 namespace tpBolillero.Core
 {
-    public class Bolillero:ICloneable
+    public class Bolillero : ICloneable 
     {
         public List<byte> Adentro {get;set;}
         public List<byte> Afuera {get;set;}
@@ -13,6 +13,14 @@ namespace tpBolillero.Core
 
         public Bolillero(byte numerob) 
             => CrearBolillas(numerob);
+
+        private Bolillero( Bolillero Original )
+        {
+            List<byte>Adentro2 = new List<byte>(Original.Adentro);
+            List<byte>Afuera2 = new List<byte>(Original.Afuera);
+        }
+
+        
         
 
         public void CrearBolillas(byte numerob)
@@ -61,7 +69,12 @@ namespace tpBolillero.Core
             }
             return contador;
         }
+
+        public object Clone()
+        {
+           return new Bolillero(this);
+        }
     }
 
-    
+
 }

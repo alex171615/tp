@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Linq;
 using System;
 
@@ -12,10 +14,10 @@ namespace tpBolillero.Core
 
         }
 
-        public long simularConHilos(Bolillero copia, List <byte> juegos, long hilos);
-        Task <long>[] tarea = new Task <long>
+        public long simularConHilos(Bolillero copia, List <byte> juegos, long j, long hilos)
         {
-
+        Task <long>[] tarea = new Task <long>[hilos];
+           return 1;
         }
     
 
