@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Linq;
 using System;
@@ -8,17 +7,30 @@ namespace tpBolillero.Core
 {
     public class Simulacion
     {
-        public long simularSinHilos(Bolillero copia, List <byte> juegos, long j )
+        public long simularSinHilos(Bolillero copia, List <byte> juegos, long cantidadJugadas )
         {
-            return copia.JugarN(juegos,j);
+            return copia.JugarN(juegos,cantidadJugadas);
 
         }
 
-        public long simularConHilos(Bolillero copia, List <byte> juegos, long j, long hilos)
+        public long simularConHilos(Bolillero bolillero, List <byte> juegos, long cantidadJugadas, long hilos)
         {
-        Task <long>[] tarea = new Task <long>[hilos];
-           return 1;
+            Task <long>[] tarea = new Task <long>[hilos]; 
+
+            long ch  = cantidadJugadas/hilos;
+            for (int i = 0; i < cantidadJugadas; i++)
+            {
+                Bolillero copia =(Bolillero)bolillero.Clone();
+                tarea[i] = Task<long>.Run(() => simularSinHilos(copia, juegos, cantidadJugadas));
+            
+            }
+
+            Task <long>.WaitAll(tarea);
+            return tarea.Sum(x => x.Result);
+
+            
         }
+        
     
 
         
