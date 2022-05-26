@@ -22,18 +22,12 @@ namespace tpBolillero.Core
             {
                 Bolillero copia =(Bolillero)bolillero.Clone();
                 tarea[i] = Task<long>.Run(() => simularSinHilos(copia, juegos, cantidadJugadas));
-            
             }
 
             Task <long>.WaitAll(tarea);
             return tarea.Sum(x => x.Result);
-
-            
-        }
-        
-    
-
-        
+   
+        }    
         
     }
 }
