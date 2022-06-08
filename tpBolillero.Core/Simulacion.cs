@@ -17,7 +17,7 @@ namespace tpBolillero.Core
         {
             Task <long>[] tarea = new Task <long>[hilos]; 
 
-            long ch  = cantidadJugadas/hilos;
+            long cantidadh  = cantidadJugadas/hilos;
             for (int i = 0; i < cantidadJugadas; i++)
             {
                 Bolillero copia =(Bolillero)bolillero.Clone();
@@ -28,6 +28,23 @@ namespace tpBolillero.Core
             return tarea.Sum(x => x.Result);
    
         }    
+
+        public async Task<long> imprimirAsync(Bolillero bolillero, List <byte> juegos, long cantidadJugadas, long hilos)
+        {
+            Task <long>[] tarea = new Task <long>[hilos]; 
+
+            long cantidadh  = cantidadJugadas/hilos;
+
+            for (int i = 0; i < cantidadJugadas; i++)
+            {
+                Bolillero copia = (Bolillero)bolillero.Clone();
+                tarea[i] = Task<long>.Run(() => simularSinHilos(copia, juegos, hilos));
+            }
+
+            await Task <long>.WhenAll(tarea);
+            return tarea.Sum(x => x.Result);
+
+        }
         
     }
 }
